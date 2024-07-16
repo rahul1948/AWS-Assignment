@@ -1,0 +1,14 @@
+manage-sql:
+ setJobStatusSql: INSERT INTO job (job_id, status, aws_services_type) VALUES (:jobId, :jobStatus, :service);
+ persistBucketsSql: INSERT INTO s3_buckets (name, creation_date, owner_id) VALUES (:name, :creationDate, :ownerId);
+ persistInstancesSql: INSERT INTO ec2_instances (instance_id, instance_type, state, launch_time, private_ip, public_ip, availability_zone) VALUES (:instanceId, :instanceType, :state, :launchTime, :privateIp, :publicIp, :availabilityZone);
+ persistBucketObjectsSql: INSERT INTO s3_objects (bucket_name, object_key, size) VALUES (:bucketName, :objectKey, :size);
+ fetchS3BucketObjectCount: SELECT COUNT(*) FROM s3_objects WHERE bucket_name = :bucketName;
+ fetchS3BucketObjectLike: SELECT object_key FROM s3_objects WHERE bucket_name = :bucketName AND object_key LIKE :pattern;
+ fetchJobStatusByJobId: SELECT status FROM job WHERE job_id = :jobId;
+
+
+
+
+
+
